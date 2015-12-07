@@ -1,0 +1,43 @@
+<template name="walkDetail">
+	<head>
+  		<title>dogWalk</title>
+	</head>
+
+	<div class="container-fluid">
+
+		{{ > navBar }}
+
+		<div class="row">
+			<div class="col-md-12">
+
+				{{#with walk}}
+
+					<h2>Walk Details</h2>
+					
+					<h4>Dogs:  
+						{{#each dogs}}
+								&nbsp;&nbsp;{{this}}&nbsp;&nbsp;
+						{{/each}}
+					</h4>
+					
+					<h4>Walker: {{walker.profile.firstName}} {{walker.profile.lastName}}</h4>
+					
+					<h4>Date: {{walkDate}}</h4>
+					
+					<h4>Total Time: {{totalTime}}</h4>
+					
+					<h4>Map </h4>
+
+					<div class="map-container">
+    					{{> googleMap name="map" options=mapOptions}}
+  					</div>
+
+				{{/with}}
+
+			</div>
+
+		</div>
+
+	</div>
+
+</template>

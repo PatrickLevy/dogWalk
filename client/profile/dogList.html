@@ -1,0 +1,38 @@
+<template name="dogList">
+	<head>
+  		<title>dogWalk</title>
+	</head>
+	<body>
+		<div class="container-fluid">
+
+			{{ > navBar }}
+
+			<div class="row">
+				<div class="col-md-12">
+					<body>
+
+						<!-- <div class="form-group">
+							<input type="text" class="form-control" id="newDogName" placeholder="Dog Name">
+						</div> -->
+
+						<div class="form-group">
+							<a href="/myProfile" class="btn btn-danger" value="Cancel">Return to Profile</a>
+		  				</div>
+
+		  				<h4>Please select the dogs that you walk: </h4>
+		  					{{#each allDogs}}
+		  						<div class="row">
+		  							<div class="col-md-6">
+		  								<div class="checkbox">
+  											<label><input type="checkbox" value="" data-id="{{this._id}}" {{isChecked}}>{{this.name}}</label>
+										</div>
+
+		  							</div>
+		  						</div>
+		  					{{/each}}
+					</body>
+				</div>
+			</div>
+		</div>
+	</body>
+</template>
