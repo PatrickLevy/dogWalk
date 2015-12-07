@@ -63,7 +63,11 @@ Template.newWalk.events({
 		//Update database
 		var doc = {walker: Meteor.userId(), dogs: dogs, data: walkData};
 		console.log(doc);
-		Meteor.call('addNewWalk', doc);
+		Meteor.call('addNewWalk', doc, function(err, doc) {
+			if(!err){
+				Router.go('/viewWalks');
+			}
+		});
 
 		//Set walking session variable to false and stop recording
 		Session.set('walking', false);

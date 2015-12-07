@@ -1,8 +1,5 @@
 Template.editDogs.helpers({
-    // dogs: function () {
-    // 	return Dogs.find().fetch();
-    //   	//return dogList;
-    // }
+    
 });
 
 Template.editDogs.events({

@@ -1,15 +1,13 @@
 Router.route('/', function () {
-  if(Roles.userIsInRole(Meteor.userId(), 'owner') || Roles.userIsInRole(Meteor.userId(), 'walker')){
-    this.render('home');
-  }
-  else {
-    Router.go('/editProfile');
-  }
+  this.render('home');
 });
 
 Router.route('/newWalk', function () {
-  if(Meteor.userId()){
+  if(Meteor.userId() && (Roles.userIsInRole(Meteor.userId(), 'walker') || Roles.userIsInRole(Meteor.userId(), 'owner'))) {
   	this.render('newWalk');
+  }
+  else if(Meteor.userId() && !(Roles.userIsInRole(Meteor.userId(), 'walker') || Roles.userIsInRole(Meteor.userId(), 'owner'))) {
+    Router.go('/editProfile');
   }
   else {
   	Router.go('/');
@@ -17,11 +15,14 @@ Router.route('/newWalk', function () {
 });
 
 Router.route('/viewWalks', function () {
-  if(Meteor.userId()){
-  	this.render('viewWalks');
+  if(Meteor.userId() && (Roles.userIsInRole(Meteor.userId(), 'walker') || Roles.userIsInRole(Meteor.userId(), 'owner'))) {
+    this.render('viewWalks');
+  }
+  else if(Meteor.userId() && !(Roles.userIsInRole(Meteor.userId(), 'walker') || Roles.userIsInRole(Meteor.userId(), 'owner'))) {
+    Router.go('/editProfile');
   }
   else {
-  	Router.go('/');
+    Router.go('/');
   }
 });
 
@@ -47,20 +48,26 @@ Router.route('/walkDetail/:_id', function () {
 });
 
 Router.route('/myProfile', function () {
-  if(Meteor.userId()){
-  	this.render('myProfile');
+  if(Meteor.userId() && (Roles.userIsInRole(Meteor.userId(), 'walker') || Roles.userIsInRole(Meteor.userId(), 'owner'))) {
+    this.render('myProfile');
+  }
+  else if(Meteor.userId() && !(Roles.userIsInRole(Meteor.userId(), 'walker') || Roles.userIsInRole(Meteor.userId(), 'owner'))) {
+    Router.go('/editProfile');
   }
   else {
-  	Router.go('/');
+    Router.go('/');
   }
 });
 
 Router.route('/admin', function () {
-  if(Meteor.userId()){
-  	this.render('admin');
+  if(Meteor.userId() && (Roles.userIsInRole(Meteor.userId(), 'walker') || Roles.userIsInRole(Meteor.userId(), 'owner'))) {
+    this.render('admin');
+  }
+  else if(Meteor.userId() && !(Roles.userIsInRole(Meteor.userId(), 'walker') || Roles.userIsInRole(Meteor.userId(), 'owner'))) {
+    Router.go('/editProfile');
   }
   else {
-  	Router.go('/');
+    Router.go('/');
   }
 });
 
@@ -74,19 +81,25 @@ Router.route('/editProfile', function () {
 });
 
 Router.route('/editDogs', function () {
-  if(Meteor.userId()){
-  	this.render('editDogs');
+  if(Meteor.userId() && (Roles.userIsInRole(Meteor.userId(), 'walker') || Roles.userIsInRole(Meteor.userId(), 'owner'))) {
+    this.render('editDogs');
+  }
+  else if(Meteor.userId() && !(Roles.userIsInRole(Meteor.userId(), 'walker') || Roles.userIsInRole(Meteor.userId(), 'owner'))) {
+    Router.go('/editProfile');
   }
   else {
-  	Router.go('/');
+    Router.go('/');
   }
 });
 
 Router.route('/dogList', function () {
-  if(Meteor.userId()){
-  	this.render('dogList');
+  if(Meteor.userId() && (Roles.userIsInRole(Meteor.userId(), 'walker') || Roles.userIsInRole(Meteor.userId(), 'owner'))) {
+    this.render('dogList');
+  }
+  else if(Meteor.userId() && !(Roles.userIsInRole(Meteor.userId(), 'walker') || Roles.userIsInRole(Meteor.userId(), 'owner'))) {
+    Router.go('/editProfile');
   }
   else {
-  	Router.go('/');
+    Router.go('/');
   }
 });

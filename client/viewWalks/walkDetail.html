@@ -12,25 +12,35 @@
 
 				{{#with walk}}
 
-					<h2>Walk Details</h2>
-					
-					<h4>Dogs:  
-						{{#each dogs}}
-								&nbsp;&nbsp;{{this}}&nbsp;&nbsp;
-						{{/each}}
-					</h4>
-					
-					<h4>Walker: {{walker.profile.firstName}} {{walker.profile.lastName}}</h4>
-					
-					<h4>Date: {{walkDate}}</h4>
-					
-					<h4>Total Time: {{totalTime}}</h4>
-					
-					<h4>Map </h4>
+					<div class="row">
+						
+						<div class="col-md-6">
+							<span style="float: right"><i class="btn fa fa-trash fa-lg" data-id="{{this._id}}"></i></span>
+							<h2>Walk Details </h2>
+						</div>
+						
+					</div>
 
-					<div class="map-container">
-    					{{> googleMap name="map" options=mapOptions}}
-  					</div>
+					<div class="row">
+						<div class="col-md-6">
+
+							<h6>Dogs:  
+								{{#each dogs}}
+										&nbsp;&nbsp;{{this}}&nbsp;&nbsp;
+								{{/each}}
+							</h6>
+							
+							<h6>Walker: {{walker.profile.firstName}} {{walker.profile.lastName}}</h6>
+							
+							<h6>Date: {{walkDate}}</h6>
+							
+							<h6>Total Time: {{totalTime}}</h6>
+
+							<div class="map-container">
+		    					{{> googleMap name="map" options=mapOptions}}
+		  					</div>
+		  				</div>
+	  				</div>
 
 				{{/with}}
 

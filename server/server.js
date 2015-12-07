@@ -1,6 +1,4 @@
-// Meteor.publish('users', function(){
-//     return Meteor.users.find()
-// });
+
 
 Meteor.publish('dogs', function(){
     return Dogs.find()
@@ -13,15 +11,6 @@ Meteor.publish('walks', function(){
 Meteor.publish('allUsers', function() {
 	return Meteor.users.find({});
 });
-
-//add custom fields from user collection
-// Meteor.publish('userData', function() {
-//   if(!this.userId) return null;
-//   return Meteor.users.find(this.userId, {fields: {
-//     dogs: 1,
-//   }});
-// });
-
 
 Meteor.methods({
 	'addDog': function(dogName) {
@@ -56,7 +45,7 @@ Meteor.methods({
 	},
 
 	'addWalkerToDog': function(dogId) {
-		console.log("dogId", dogId);
+		//console.log("dogId", dogId);
 		Meteor.users.update({_id: Meteor.userId()}, {$addToSet: {"profile.dogsToWalk": dogId}}, function(err, doc) {
 			if(!err){
 				return true;
@@ -65,7 +54,7 @@ Meteor.methods({
 	},
 
 	'removeWalkerFromDog': function(dogId) {
-		console.log("dogId", dogId);
+		//console.log("dogId", dogId);
 		Meteor.users.update({_id: Meteor.userId()}, {$pull: {"profile.dogsToWalk": dogId}}, function(err, doc) {
 			if(!err){
 				return true;
@@ -74,11 +63,18 @@ Meteor.methods({
 	},
 
 	'addNewWalk': function(walkData) {
-		console.log("walkData", walkData);
+		//console.log("walkData", walkData);
 		Walks.insert({walkData}, function(err, doc) {
 			if(!err){
 				return true;
 			}
 		});
+	},
+	'deleteWalk': function(walkId) {
+		Walks.remove({_id: walkId}, function(err, doc) {
+			if(!err){
+				return true;
+			}
+		})
 	}
 });

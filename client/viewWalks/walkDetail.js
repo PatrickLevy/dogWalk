@@ -22,9 +22,7 @@ Template.walkDetail.helpers({
     var walk = Walks.findOne({_id: Router.current().params._id});
     return moment(walk.walkData.data[0].time).from(moment(walk.walkData.data[walk.walkData.data.length - 1].time), true);  
   },
-  // dogName: function () {
-  // 	return Dogs.findOne({_id: Router.current().params._id}).name;
-  // },
+  
   walkDate: function () {
   	return ("this.walkData", moment(this.walkData.data[0].time).format("dddd, MMMM Do YYYY, h:mm a"));
   },
@@ -40,6 +38,16 @@ Template.walkDetail.helpers({
   }
 });
 
+Template.walkDetail.events({
+  'click .fa-trash': function(e) {
+    Meteor.call('deleteWalk', this._id, function(err, doc) {
+      if(!err){
+        Router.go('/viewWalks');
+      }
+    });
+  }
+});
+
 Template.walkDetail.onCreated(function() {  
   GoogleMaps.ready('map', function(map) {
 
@@ -51,9 +59,7 @@ Template.walkDetail.onCreated(function() {
         var latLng = {lat: data.location.lat, lng: data.location.lng};
         walkCoordinates.push(latLng);
      });
-     // {lat: 44.963837, lng: -93.253161},
-     // {lat: 44.963840, lng: -93.251707}
-     // ];
+     
      var walkPath = new google.maps.Polyline({
         path: walkCoordinates,
         geodesic: true,
@@ -63,15 +69,9 @@ Template.walkDetail.onCreated(function() {
         map: map.instance
      });
 
-     //walkPath.setMap(map);
-
-     // var marker = new google.maps.Marker({
-     //  position: new google.maps.LatLng(walk.walkData.data[0].location.lat, walk.walkData.data[0].location.lng),
-     //  map: map.instance
     });
 
   });
-//});
 
 
 Template.walkDetail.onRendered(function() {

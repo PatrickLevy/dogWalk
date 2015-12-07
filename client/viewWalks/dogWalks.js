@@ -3,7 +3,6 @@
 Template.dogWalks.helpers({
   dogWalks: function () {
   	var dogId = Router.current().params._id;
-  	//console.log(Walks.find({"walkData.walker": Meteor.userId(), "walkData.dogs": {$in: [dogId]}}).fetch());
   	return Walks.find({"walkData.dogs": {$in: [dogId]}}).fetch();
   },
 
