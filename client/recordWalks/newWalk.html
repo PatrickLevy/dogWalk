@@ -1,0 +1,50 @@
+<template name="newWalk">
+	<head>
+  		<title>dogWalk</title>
+	</head>
+
+	<div class="container-fluid">
+
+		{{ > navBar }}
+
+		<div class="row">
+			<div class="col-md-12">
+
+				{{#if notWalking}}
+					<h4>Please select the dogs that you will be walking at this time:</h4>
+
+					{{#each ownerDogs}}
+  						<div class="row">
+  							<div class="col-md-12">
+  								<div class="checkbox">
+									<label><input type="checkbox" value="" data-id="{{this._id}}">{{this.name}}</label>
+								</div>
+  							</div>
+  						</div>
+		  			{{/each}}	
+
+					{{#each dogsToWalk}}
+  						<div class="row">
+  							<div class="col-md-12">
+  								<div class="checkbox">
+									<label><input type="checkbox" value="" data-id="{{this._id}}">{{this.name}}</label>
+								</div>
+  							</div>
+  						</div>
+		  			{{/each}}
+		  			<a class="btn btn-success" href="#"><i class="fa fa-play-circle"></i> Start Walk</a>
+				{{/if}}
+
+				{{#if walking}}
+					<h4>Recording walk...</h4>
+					<!-- <h6>Elapsed Time: {{elapsedTime}}</h6> -->
+					
+					<a class="btn btn-danger" href="#"><i class="fa fa-stop-circle-o"></i> Stop Walk</a>
+				{{/if}}
+
+			</div>
+
+		</div>
+	</div>
+
+</template>

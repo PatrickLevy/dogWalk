@@ -1,0 +1,30 @@
+<template name="dogWalks">
+	<head>
+  		<title>dogWalk</title>
+	</head>
+
+	<div class="container-fluid">
+
+		{{ > navBar }}
+
+		<div class="row">
+			<div class="col-md-12">
+
+					<h4>Dog: {{dogName}}</h4>
+
+					{{#each dogWalks}}
+  						<div class="row">
+  							<div class="col-md-12">
+  								<a href="/walkDetail/{{this._id}}" data-id="{{this._id}}">Walk - {{walkDate}}</a>
+  								<hr>
+  							</div>
+  						</div>
+		  			{{/each}}	
+
+			</div>
+
+		</div>
+
+	</div>
+
+</template>

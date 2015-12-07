@@ -1,0 +1,53 @@
+<template name="myProfile">
+	<head>
+  		<title>dogWalk</title>
+	</head>
+	<body>
+		<div class="container-fluid">
+
+			{{ > navBar }}
+
+			<div class="row">
+				<div class="col-md-12">
+		  			<a href="/editProfile"><i class="fa fa-pencil fa-lg"></i> Edit</a>
+		  			<h1>{{user.profile.firstName}} {{user.profile.lastName}}</h1>
+		  			<h4>{{user.profile.address}}</h4>
+		  			<h4>Role: {{userRole}}</h4>
+		  			<hr>
+		  		</div>
+		  	</div>
+
+		  	<div class="row">
+		  		<div class="col-md-12">
+		  			
+		  				{{#if isOwner}}
+		  					<a href="/editDogs"><i class="fa fa-pencil fa-lg"></i> Edit</a>
+		  					<h4>My Dogs: </h4>
+	  						<ul>
+	  							{{#each ownerDogs}}
+	  							<li>
+	  								{{this.name}}
+	  							</li>
+	  							{{/each}}
+	  						</ul>
+	  						<hr>
+		  				{{/if}}
+
+		  				{{#if isWalker}}
+		  					<a href="/dogList"><i class="fa fa-pencil fa-lg"></i> Edit</a>
+		  					<h4>Dogs that I walk</h4>
+		  					<ul>
+		  						{{#each dogsToWalk}}
+		  						<li>
+		  							{{this.name}}
+		  						</li>
+		  						{{/each}}
+		  					</ul>
+		  					<hr>
+		  				{{/if}}
+				</div>
+			</div>
+
+		</div>
+	</body>
+</template>
